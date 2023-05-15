@@ -23,6 +23,7 @@ export interface ICalendarProps {
   dateFormat?: string;
   prevBtn?: Function | Boolean;
   nextBtn?: Function | Boolean;
+  onActiveDateChange?: Function;
   headerType?: "EvenSpread" | "ActionSeparate";
   onClickDay?: Function;
 }

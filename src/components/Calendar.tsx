@@ -20,6 +20,7 @@ const Calendar: React.FunctionComponent<ICalendarProps> = ({
   nextBtn = false,
   headerType = "EvenSpread",
   onClickDay = () => {},
+  onActiveDateChange = () => {}
 }) => {
   const [calendar, setCalendar] = React.useState<Array<Week>>([]);
   const [highlighted, setHighlighted] = React.useState<Array<DateType>>([]);
@@ -109,7 +110,9 @@ const Calendar: React.FunctionComponent<ICalendarProps> = ({
       <div
         className="flex items-center prev-btn"
         onClick={() => {
-          setActiveDate(activeDate.clone().subtract(1, "month"));
+          const newActiveDate = activeDate.clone().subtract(1, "month")
+          setActiveDate(newActiveDate);
+          onActiveDateChange(newActiveDate)
         }}
       >
         {typeof prevBtn === "function" ? prevBtn() : <BtnIcon />}
@@ -122,7 +125,9 @@ const Calendar: React.FunctionComponent<ICalendarProps> = ({
       <div
         className="flex items-center next-btn"
         onClick={() => {
-          setActiveDate(activeDate.clone().add(1, "month"));
+          const newActiveDate = activeDate.clone().add(1, "month")
+          setActiveDate(newActiveDate);
+          onActiveDateChange(newActiveDate)
         }}
       >
         {typeof nextBtn === "function" ? (
